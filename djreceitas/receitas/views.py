@@ -1,6 +1,9 @@
+from unicodedata import name
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
-def index(request) -> HttpResponse:
-    return HttpResponse('<h1>Receitas</h1>')
+def index(request) -> render:
+    return render(request, 'index.html')
+
+def receita(request) -> render:
+    return render(request, 'receita.html')

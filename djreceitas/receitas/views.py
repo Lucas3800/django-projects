@@ -1,9 +1,19 @@
-from unicodedata import name
-from django.shortcuts import render
-
+from django.shortcuts import redirect, render, get_object_or_404
+from .models import Receita
 
 def index(request) -> render:
-    return render(request, 'index.html')
+    receitas = Receita.objects.all()
+    
+    return render(request, 'index.html', {
+        'receitas': receitas
+    })
 
-def receita(request) -> render:
-    return render(request, 'receita.html')
+def receita(request, receita_id: int) -> render:
+    receita = Receita.objects.filter(id=receita_id)
+
+    if not receita:
+        return render(request, 'receita_nao_encontrada.html')
+
+    return render(request, 'receita.html', {
+        'receita': receita.get()
+    })

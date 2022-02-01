@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 *recurso_aulas
+*database_config*

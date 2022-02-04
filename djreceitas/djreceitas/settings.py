@@ -17,6 +17,7 @@ from .database_config import DB_CONNECTION
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_TEMPLATE_DIR = BASE_DIR / 'templates'
 BASE_STATIC_DIR = BASE_DIR / 'static'
+BASE_MEDIA_DIR = BASE_DIR / 'media'
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     # CREATED APPS:
     'receitas',
     'pessoas',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media:
+MEDIA_ROOT = BASE_MEDIA_DIR
+MEDIA_URL = '/media/'

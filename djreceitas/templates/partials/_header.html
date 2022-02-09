@@ -54,14 +54,20 @@
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
-
+                        
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="{% url 'receitas_index' %}">Home</a></li>
-                                <li><a href="{% url 'usuarios_cadastro' %}">Cadastro</a></li>
-                                <li><a href="{% url 'usuarios_login' %}">Login</a></li>
-                                {% comment %} <li><a href="{% url 'receitas_receita' %}">Receitas</a></li> {% endcomment %}
+                                <li><a href="{% url 'receitas_index' %}">Pagina inicial</a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'usuarios_dashboard' %}">minhas receitas</a></li>
+                                    <li><a href="{% url 'receitas_criar' %}">criar nova receita</a></li>
+                                    <li><a href="{% url 'usuarios_logout' %}">Sair</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'usuarios_cadastro' %}">Cadastro</a></li>
+                                    <li><a href="{% url 'usuarios_login' %}">Login</a></li>
+                                    {% comment %} <li><a href="{% url 'receitas_receita' %}">Receitas</a></li> {% endcomment %}
+                                {% endif %}
                             </ul>
 
                             <!-- Formulario de busca -->

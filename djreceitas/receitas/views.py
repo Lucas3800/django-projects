@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Receita
+from .models import Receita, Categoria
+from django.contrib.auth.models import User
+from datetime import datetime
 
 
 def index(request) -> render:
@@ -36,3 +38,28 @@ def buscar(request):
     return render(request, 'index.html', {
         'receitas': receitas
     })
+
+def criar_receita(request) -> render:
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+
+            categoria = Categoria.objects.create(nome=request.POST.get('categoria'))
+            user = User.objects.get(id=request.user.id)
+            
+            Receita.objects.create(
+                nome = request.POST.get('nome_receita'),
+                ingredientes = request.POST.get('ingredientes'),
+                modo_preparo = request.POST.get('modo_preparo'),
+                tempo_preparo = request.POST.get('tempo_preparo'),
+                rendimento = request.POST.get('rendimento'),
+                categoria = categoria,
+                foto_receita = request.FILES.get('foto_receita'),
+                pessoa = user
+            ).save()
+
+            redirect('usuarios_dashboard')
+
+        return render(request, 'criar_receita.html')
+    else:
+        return redirect('usuarios_login')

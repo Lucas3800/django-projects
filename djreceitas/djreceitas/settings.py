@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import sys
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
@@ -19,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_TEMPLATE_DIR = BASE_DIR / 'templates'
 BASE_STATIC_DIR = BASE_DIR / 'static'
 BASE_MEDIA_DIR = BASE_DIR / 'media'
+BASE_APPS_DIR = BASE_DIR / 'apps'
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # CREATED APPS:
     'receitas',
-    'pessoas',
     'usuarios',
 ]
 
@@ -148,3 +149,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+sys.path.insert(-1, str(BASE_APPS_DIR))

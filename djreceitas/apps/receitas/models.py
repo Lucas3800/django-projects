@@ -1,7 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
 from datetime import datetime
-from pessoas.models import *
 from django.contrib.auth.models import User
 
 

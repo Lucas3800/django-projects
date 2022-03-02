@@ -3,12 +3,12 @@
 import datetime
 from django.db import migrations, models
 import django.db.models.deletion
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pessoas', '0004_alter_pessoa_email'),
         ('receitas', '0001_initial'),
     ]
 
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='receita',
             name='pessoa',
-            field=models.ForeignKey(default=1, help_text='Pessoa a postar a receita', on_delete=django.db.models.deletion.DO_NOTHING, to='pessoas.pessoa'),
+            field=models.ForeignKey(default=1, help_text='Pessoa a postar a receita', on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='receita',

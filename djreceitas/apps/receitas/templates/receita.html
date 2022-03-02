@@ -23,9 +23,9 @@
                         <select name="categoria" id="select1">
                             {% for categoria in categorias %}
                                 {% if receita.categoria == categoria %}
-                                    <option value="{{ categoria.id }}" selected>{{ categoria }}</option>
+                                    <option value="{{ categoria.id }}" selected>{{ categoria.nome }}</option>
                                 {% else %}
-                                    <option value="{{ categoria.id }}">{{ categoria }}</option>
+                                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>

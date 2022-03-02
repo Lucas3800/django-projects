@@ -19,6 +19,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading">
+                        {% include 'partials/_alertas.html' %}
                         <h3>Olá, {{ user.username.title }}</h3>
                     </div>
                 </div>
@@ -43,11 +44,16 @@
                                 <div class="receipe-content">
                                     <a href="{% url 'receitas_receita' receita.id %}">
                                         <h5>{{ receita.nome }}</h5>
-                                        {% comment %} <h6>{{ receita.data_receita }}</h6> {% endcomment %}
                                     </a>
-                                    {% if not receita.publicar %}
-                                        <button class="button">Publicar</button>
-                                    {% endif %}
+                                    <a type="button" class="btn btn-primary" href="{% url 'receitas_editar' receita.id %}">Editar</a>
+                                    <a type="button" class="btn btn-secondary" href="{% url 'receitas_publicar' receita.id %}">
+                                        {% if receita.publicar %}
+                                            Privar
+                                        {% else %}
+                                            Publicar
+                                        {% endif %}
+                                    </a>
+                                    <a type="button" class="btn btn-danger" href="{% url 'receitas_deletar' receita.id %}">Deletar</a>                                    
                                 </div>
                             </div>
                         </div>
